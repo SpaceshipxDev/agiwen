@@ -1,0 +1,173 @@
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#16a085" />
+  
+  <!-- Reinforcement Learning Visualization -->
+  <g>
+    <!-- Environment/Agent/Reward visualization -->
+    <g transform="translate(300, 200)">
+      <!-- Environment (maze/grid world) -->
+      <g>
+        <!-- Grid -->
+        <g stroke="#fff" stroke-width="1" opacity="0.3">
+          <!-- Horizontal lines -->
+          <line x1="-150" y1="-100" x2="150" y2="-100" />
+          <line x1="-150" y1="-50" x2="150" y2="-50" />
+          <line x1="-150" y1="0" x2="150" y2="0" />
+          <line x1="-150" y1="50" x2="150" y2="50" />
+          <line x1="-150" y1="100" x2="150" y2="100" />
+          
+          <!-- Vertical lines -->
+          <line x1="-150" y1="-100" x2="-150" y2="100" />
+          <line x1="-100" y1="-100" x2="-100" y2="100" />
+          <line x1="-50" y1="-100" x2="-50" y2="100" />
+          <line x1="0" y1="-100" x2="0" y2="100" />
+          <line x1="50" y1="-100" x2="50" y2="100" />
+          <line x1="100" y1="-100" x2="100" y2="100" />
+          <line x1="150" y1="-100" x2="150" y2="100" />
+        </g>
+        
+        <!-- Obstacles -->
+        <g fill="#fff" opacity="0.2">
+          <rect x="-150" y="-50" width="50" height="50" />
+          <rect x="-50" y="-100" width="50" height="50" />
+          <rect x="0" y="0" width="50" height="50" />
+          <rect x="50" y="-100" width="50" height="50" />
+          <rect x="100" y="50" width="50" height="50" />
+        </g>
+        
+        <!-- Start position -->
+        <circle cx="-125" cy="-75" r="15" fill="#3498db" />
+        
+        <!-- Goal/Reward position -->
+        <circle cx="125" cy="-75" r="15" fill="#e74c3c" />
+        
+        <!-- Agent -->
+        <g transform="translate(-75, 25)">
+          <circle cx="0" cy="0" r="12" fill="#f1c40f" />
+          <!-- Agent direction indicator -->
+          <line x1="0" y1="0" x2="10" y2="-10" stroke="#2c3e50" stroke-width="3" />
+        </g>
+      </g>
+      
+      <!-- Path/trajectory -->
+      <g fill="none" stroke="#f1c40f" stroke-width="2" stroke-dasharray="5,5" opacity="0.7">
+        <path d="M-125,-75 L-125,-25 L-75,-25 L-75,25 L-25,25 L-25,-25 L25,-25 L25,-75 L75,-75 L75,-25 L125,-25 L125,-75" />
+      </g>
+      
+      <!-- Reward signals -->
+      <g>
+        <g transform="translate(-125, -25)" opacity="0.7">
+          <text x="0" y="0" font-size="10" fill="#fff" text-anchor="middle">+0.1</text>
+        </g>
+        
+        <g transform="translate(-25, 25)" opacity="0.7">
+          <text x="0" y="0" font-size="10" fill="#fff" text-anchor="middle">-0.1</text>
+        </g>
+        
+        <g transform="translate(75, -75)" opacity="0.7">
+          <text x="0" y="0" font-size="10" fill="#fff" text-anchor="middle">+0.5</text>
+        </g>
+        
+        <g transform="translate(125, -75)" opacity="0.7">
+          <text x="0" y="0" font-size="10" fill="#fff" text-anchor="middle">+1.0</text>
+        </g>
+      </g>
+    </g>
+    
+    <!-- RL Cycle visualization -->
+    <g transform="translate(300, 200)">
+      <!-- Cycle arrows -->
+      <g fill="none" stroke="#fff" stroke-width="2">
+        <!-- Agent to Action -->
+        <path d="M-180,-150 C-150,-180 -120,-180 -90,-150" marker-end="url(#arrowhead)" />
+        <!-- Action to Environment -->
+        <path d="M-90,-150 C-60,-120 -60,-90 -90,-60" marker-end="url(#arrowhead)" />
+        <!-- Environment to State -->
+        <path d="M-90,-60 C-120,-30 -150,-30 -180,-60" marker-end="url(#arrowhead)" />
+        <!-- State to Agent -->
+        <path d="M-180,-60 C-210,-90 -210,-120 -180,-150" marker-end="url(#arrowhead)" />
+        <!-- Environment to Reward -->
+        <path d="M-90,-60 L-135,-105" marker-end="url(#arrowhead)" />
+        <!-- Reward to Agent -->
+        <path d="M-135,-105 L-180,-150" marker-end="url(#arrowhead)" />
+      </g>
+      
+      <!-- Arrowhead marker definition -->
+      <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill="#fff" />
+        </marker>
+      </defs>
+      
+      <!-- Labels -->
+      <g fill="#fff" font-family="Arial, sans-serif" text-anchor="middle">
+        <text x="-180" y="-160" font-size="12">Agent</text>
+        <text x="-90" y="-160" font-size="12">Action</text>
+        <text x="-90" y="-50" font-size="12">Environment</text>
+        <text x="-180" y="-50" font-size="12">State</text>
+        <text x="-135" y="-115" font-size="12">Reward</text>
+      </g>
+    </g>
+    
+    <!-- Q-table visualization -->
+    <g transform="translate(450, 100)">
+      <rect x="-80" y="-50" width="160" height="100" fill="#fff" opacity="0.1" stroke="#fff" stroke-width="1" />
+      
+      <!-- Table headers -->
+      <g fill="#fff" font-family="monospace" font-size="10" text-anchor="middle">
+        <text x="-60" y="-35">State</text>
+        <text x="-20" y="-35">Up</text>
+        <text x="20" y="-35">Right</text>
+        <text x="60" y="-35">Down</text>
+        
+        <line x1="-80" y1="-30" x2="80" y2="-30" stroke="#fff" stroke-width="1" />
+        <line x1="-40" y1="-50" x2="-40" y2="50" stroke="#fff" stroke-width="1" />
+        <line x1="0" y1="-50" x2="0" y2="50" stroke="#fff" stroke-width="1" />
+        <line x1="40" y1="-50" x2="40" y2="50" stroke="#fff" stroke-width="1" />
+        
+        <!-- Sample Q-values -->
+        <text x="-60" y="-15">(0,0)</text>
+        <text x="-20" y="-15">0.1</text>
+        <text x="20" y="-15">0.8</text>
+        <text x="60" y="-15">0.2</text>
+        
+        <line x1="-80" y1="-10" x2="80" y2="-10" stroke="#fff" stroke-width="0.5" />
+        
+        <text x="-60" y="5">(0,1)</text>
+        <text x="-20" y="5">0.3</text>
+        <text x="20" y="5">0.5</text>
+        <text x="60" y="5">0.1</text>
+        
+        <line x1="-80" y1="10" x2="80" y2="10" stroke="#fff" stroke-width="0.5" />
+        
+        <text x="-60" y="25">(1,0)</text>
+        <text x="-20" y="25">0.2</text>
+        <text x="20" y="25">0.9</text>
+        <text x="60" y="25">0.3</text>
+        
+        <line x1="-80" y1="30" x2="80" y2="30" stroke="#fff" stroke-width="0.5" />
+        
+        <text x="-60" y="45">(1,1)</text>
+        <text x="-20" y="45">0.7</text>
+        <text x="20" y="45">0.4</text>
+        <text x="60" y="45">0.2</text>
+      </g>
+    </g>
+    
+    <!-- Main title -->
+    <g fill="#fff" font-family="Arial, sans-serif" text-anchor="middle">
+      <text x="300" y="350" font-size="24" font-weight="bold">Reinforcement Learning</text>
+    </g>
+    
+    <!-- Decorative elements -->
+    <g opacity="0.1">
+      <!-- Formulas -->
+      <g fill="#fff" font-family="serif" font-size="12">
+        <text x="100" y="50">Q(s,a) ← Q(s,a) + α[r + γ max Q(s',a') - Q(s,a)]</text>
+        <text x="100" y="70">V(s) = max Q(s,a)</text>
+        <text x="100" y="90">π(s) = argmax Q(s,a)</text>
+      </g>
+    </g>
+  </g>
+</svg>
